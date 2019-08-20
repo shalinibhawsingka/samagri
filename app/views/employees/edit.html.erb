@@ -1,0 +1,8 @@
+<div class="container">
+  <%= bootstrap_form_for(@employee) do |f| %>
+    <%= f.text_field :name, label: "Name :" %><br />
+    <%= f.email_field :email, label: "Email :" %><br />
+    <%= f.check_box :status, label: "Active?" %><br />
+    <%= f.submit %>
+  <% end %>
+</div>

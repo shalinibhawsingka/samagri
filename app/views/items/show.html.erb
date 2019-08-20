@@ -1,0 +1,36 @@
+<div class="container align">
+  <h5>Id : <%= @item.id %></h5>
+  Name : <%= @item.name %>
+  <%  if @item.brand.present? %>
+    Brand : <%= link_to @item.brand.name, brands_path(@item.brand_id) %>
+  <% end %>
+  <br>
+  <%  if @item.category.present? %>
+    Category : <%= link_to @item.category.name, categories_path(@item.category_id) %>
+  <% end %>
+  <br>
+  <%  if @item.employee.present? %>
+    Employee : <%= link_to @item.employee.name, employees_path(@item.employee_id) %>
+  <% end %>
+  <br>
+  Status : <%= @item.status %><br>
+  <%  if @item.notes.present? %>
+    Notes : <%= @item.notes %>
+  <% end %>
+  <hr>
+
+  <% if @item.posts.count > 0 %>
+    <h5>Posts (<%= @item.posts.count %>)</h5>
+    <% @item.posts.each do |post|  %>
+        <%= link_to image_url(post.image_or_pdf.url) do%>
+          <%= File.basename(post.image_or_pdf_file_name, ".*") %>
+          <% if current_user.is_admin == true %>
+            <%= link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, item_post_path(@item, post.id), 
+              method: :delete, data: { confirm: "Are You sure?" } %>
+          <% end %>
+        <% end %>
+        <hr>
+        
+      <% end %>
+  <% end %>
+</div>

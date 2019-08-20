@@ -1,0 +1,54 @@
+<%= render "shared/nav" %>
+<div class="container">
+  <h2>Employee</h2>
+
+  <div class = "row">
+      <div class = "col-sm-6">
+        <%= will_paginate @employees,renderer: BootstrapPagination::Rails %>
+      </div>
+      <div class = "col-sm-6">
+        <% if current_user.is_admin == true %>
+          <%= link_to ("Add"), new_employee_path, class: "btn btn-primary add" %>
+        <% end %>
+      </div>
+    </div>
+
+  <table class = "table table-bordered">
+    <thead>
+      <tr class="bg-info">
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Allocated Items</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.name %></td>
+          <td><%= employee.email %></td>
+          <% if employee.status==true %>
+            <td>Active</td>
+          <% else %>
+            <td>Inactive</td>
+          <% end %>
+          <td>
+          <% if employee.items.count >= 1 %>
+            <% employee.items.each do |emp_item| %>
+              <%= emp_item.name %><br>
+            <% end %>
+          <% end %>
+          </td>
+          <% if current_user.is_admin == true %>
+            <td><%= link_to ("<span class='glyphicon glyphicon-edit'></span>".html_safe), edit_employee_path(employee) %></td>
+            <td><%= link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, employee_path(employee), method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

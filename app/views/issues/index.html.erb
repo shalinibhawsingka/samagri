@@ -1,0 +1,48 @@
+<%= render "shared/nav" %>
+<div class="container">
+  <h2>Issues</h2>
+
+  <div class = "row">
+      <div class = "col-sm-6">
+        <%= will_paginate @issues,renderer: BootstrapPagination::Rails %>
+      </div>
+      <div class = "col-sm-6">
+        <%= link_to ("Add"), new_issue_path, class: "btn btn-primary add" %>
+      </div>
+    </div>
+
+  <table class = "table table-bordered">
+    <thead>
+      <tr class="bg-info">
+        <th>Issue ID</th>
+        <th>Details</th>
+        <th>Item</th>
+        <th>User</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @issues.each do |issue| %>
+        <tr>
+          <td><%= issue.id %></td>
+          <td><%= issue.details %></td>
+          <td><%= issue.item.name %></td>
+          <td><%= issue.user.name %></td>
+          <% if issue.status==false %>
+            <td>Not Solved</td>
+          <% else %>
+            <td>Solved</td>
+          <% end %>
+          <% if issue.status == false %>
+            <td><%= link_to ("<span class='glyphicon glyphicon-edit'></span>".html_safe), edit_issue_path(issue) %></td>
+          <% end %>
+          <td><%= link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, issue_path(issue), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

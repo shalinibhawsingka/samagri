@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="container-fluid space">
+    <nav class="navbar navbar-expand-sm bg-dark">
+      <a class="navbar-brand logo" href="show">Inventory</a>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="users">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="brands">Brands</a>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              More
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="employees">Employees</a>
+              <a class="dropdown-item" href="items">Items</a>
+              <a class="dropdown-item" href="issues">Issues</a>
+              <a class="dropdown-item" href="storage">Storage</a>
+            </div>
+          </li>
+
+          
+
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notification (<b class="notifications-count">2</b>)</a><ul class="dropdown-menu notify-drop"><div class="notify-drop-title"><div class="row"><div class="col-md-6 col-sm-6 col-xs-6">Notifications (<b id="notifications-count">2</b>)</div><div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="tümü okundu."><i class="fa fa-dot-circle-o"></i></a></div></div></div><!-- end notify title --><!-- notify content --><div class="drop-content" id="notification"><% Notfication.all.each do |notification| %><li><div class="col-md-3 col-sm-3 col-xs-3"><%= notification.name %></div></li><% end %></div></ul></li>
+
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            <%= current_user.name %>
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="logout">Logout</a>
+          </div>
+        </li>
+          
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>

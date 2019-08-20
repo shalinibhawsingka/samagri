@@ -1,0 +1,17 @@
+<div class="container">
+  <%= form_tag storage_path, { method: :get, class: "form-inline"} do %>
+    <%= select_tag :category, options_from_collection_for_select(Category.all, :id, :name, { selected: params[:category]} ), prompt: "Select Category", class: "category-dropdown form-control search" %>
+    <%= submit_tag %>
+  <% end %>
+
+  <hr>
+
+  <% if @items.present? %>
+    <% @items.each do |cat| %>
+      <%= cat.name %><br>
+    <% end %>
+  <% end %>
+
+  <hr>
+
+</div>

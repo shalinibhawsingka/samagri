@@ -1,0 +1,27 @@
+<div class="container">
+  <%= bootstrap_form_for(@item, html:{ multipart: true }) do |f| %>
+    <%= f.text_field :name, label: "Name :" %><br />
+    <%= f.collection_select(:brand_id, Brand.all, :id, :name, {:prompt => 'Select the brand'}, :selected => @item.brand_id ) %><br />
+    <%= f.collection_select(:category_id, Category.all, :id, :name, {:prompt => 'Select the category'}, :selected => @item.category_id ) %>  <br />
+    <% if !@item.employee.present? %>
+      <%= f.collection_select(:employee_id, Employee.all, :id, :name, {:prompt => 'Select the employee'}, :selected => @item.employee_id ) %><br />
+    <% end %>
+    <%= f.check_box :status, label: "Working?" %><br />
+    <%= f.text_field :notes, label: "Notes :" %><br />
+    <%= f.fields_for :post do |t| %>
+      <%= t.label :attachment %>
+      <% if @item.posts.size > 1 %>
+        <% @item.posts.each do |post| %>
+          <div>
+            <%= image_tag post.image_or_pdf.url(:thumb) %>
+          </div>
+        <% end %>
+        <%= t.file_field :image_or_pdf, accept: 'image/jpeg,image/png,application/pdf,application/msword', multiple: true %>
+      <% else %>
+        <%= t.file_field :image_or_pdf, accept: 'image/jpeg,image/png,application/pdf,application/msword', multiple: true %>
+      <% end %>
+    <% end %>
+    
+    <%= f.submit %>
+  <% end %>
+</div>

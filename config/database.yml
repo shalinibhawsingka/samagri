@@ -1,0 +1,13 @@
+default: &default
+ adapter: mysql2
+ encoding: utf8
+ pool: 5
+ username: shalini
+ password: 1608
+
+development:
+   <<: *default
+   database: samagri_development
+test:
+ <<: *default
+ database: samagri_test
