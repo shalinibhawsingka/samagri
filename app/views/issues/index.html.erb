@@ -11,6 +11,8 @@
       </div>
     </div>
 
+  <% if @issues.present? %>
+
   <table class = "table table-bordered">
     <thead>
       <tr class="bg-info">
@@ -36,13 +38,19 @@
           <% else %>
             <td>Solved</td>
           <% end %>
-          <% if issue.status == false %>
-            <td><%= link_to ("<span class='glyphicon glyphicon-edit'></span>".html_safe), edit_issue_path(issue) %></td>
-          <% end %>
-          <td><%= link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, issue_path(issue), method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <td>
+            <% if issue.status == false %>
+              <%= link_to ("<i class='fas fa-edit'></i>".html_safe), edit_issue_path(issue) %>
+            <% end %>
+          </td>
+          <td><%= link_to "<i class='fas fa-backspace'></i>".html_safe, issue_path(issue), method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+
+  <% else %>
+    <h4>No issues yet!</h4>
+  <% end %>
 
 </div>

@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :get_item, only: [:show, :edit, :update, :destroy]
   def index
     @items = Item.paginate(page: params[:page], per_page: 5)
   end
@@ -34,19 +35,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @posts = @item.posts
   end
 
   def edit
-    @item = Item.find(params[:id])
     @item.posts.build unless @item.posts.any?
   end
 
   def update
-    @item = Item.find(params[:id])
-    if @item.status_changed?
-      binding.irb
+    if ((@item.status != item_params[:status]) && (@item.status==true))
       @category = @item.category
       count = @category.items.count
       count = count - 1
@@ -74,7 +71,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     if @item.destroy
       flash[:notice] = "Successfully deleted!"
       redirect_to items_path
@@ -87,5 +83,9 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name, :brand_id, :category_id, :employee_id, :status, :notes, post_attributes: [:image_or_pdf])
+  end
+
+  def get_item
+    @item = Item.find(params[:id])
   end
 end

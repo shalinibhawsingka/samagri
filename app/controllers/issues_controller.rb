@@ -1,4 +1,5 @@
 class IssuesController < ApplicationController
+  before_action :get_issue, only: [:edit, :update, :destroy]
   def index
     @issues = Issue.paginate(page: params[:page], per_page: 5)
   end
@@ -12,16 +13,14 @@ class IssuesController < ApplicationController
     if @issue.save
         redirect_to issues_path, alert: "User created successfully."
     else
-        redirect_to new_issue_path, alert: "Error creating issue."
+        render new_issue_path, alert: "Error creating issue."
     end
   end
 
   def edit
-    @issue = Issue.find(params[:id])
   end
 
   def update
-    @issue = Issue.find(params[:id])
     if @issue.update(issue_params)
       if @issue.status==true
         UsersMailer.with(issue: @issue).Update(@issue).deliver_now
@@ -33,7 +32,6 @@ class IssuesController < ApplicationController
   end
 
   def destroy
-    @issue = Issue.find(params[:id])
     if @issue.destroy
       flash[:notice] = "Successfully deleted!"
       redirect_to issues_path
@@ -46,5 +44,9 @@ class IssuesController < ApplicationController
 
   def issue_params
     params.require(:issue).permit(:details, :item_id, :user_id, :status)
+  end
+
+  def get_issue
+    @issue = Issue.find(params[:id])
   end
 end

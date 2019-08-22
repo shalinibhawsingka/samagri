@@ -27,8 +27,8 @@
         <tr>
           <td><%= c.name %></td>
           <% if current_user.is_admin == true %>
-            <td><%= link_to ("<span class='glyphicon glyphicon-edit'></span>".html_safe), edit_brand_path(c) %></td>
-            <td><%= link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, brand_path(c), method: :delete, data: { confirm: "Are you sure?" } %></td>
+            <td><%= link_to ("<i class='fas fa-edit'></i>".html_safe), edit_brand_path(c) %></td>
+            <td><%= link_to "<i class='fas fa-backspace'></i>".html_safe, brand_path(c), method: :delete, data: { confirm: "Are you sure?" } %></td>
           <% end %>  
         </tr>
       <% end %>

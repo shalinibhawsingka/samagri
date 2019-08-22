@@ -1,0 +1,9 @@
+<div class="container">
+<%= render "shared/errors", obj: @category %>
+  <%= bootstrap_form_for(@category) do |f| %>
+    <%= f.text_field :name, label: "Name :" %><br />
+    <%= f.text_field :buffer, label: "Please enter the buffer quantity (Defult is 5) :" %><br />
+    <%= f.text_field :min_quan, label: "Please enter min qunatity (Default is 2) :" %><br />
+    <%= f.submit %>
+  <% end %>
+</div>

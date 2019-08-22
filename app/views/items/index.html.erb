@@ -4,7 +4,7 @@
 
   <div class = "row">
       <div class = "col-sm-6">
-        <%= will_paginate @items,renderer: BootstrapPagination::Rails %>
+        <%= will_paginate @items, renderer: BootstrapPagination::Rails %>
       </div>
       <div class = "col-sm-6">
         <% if current_user.is_admin == true %>
@@ -32,7 +32,7 @@
           <td><%= link_to item.name, item_path(item) %></td>
           <td>
             <%  if item.employee.present? %>
-              <%= link_to item.employee.name, employees_path(item.employee_id) %>
+              <%= link_to item.employee.name, employees_path %>
             <% end %>
           </td>
           <% if item.status==true %>
@@ -41,9 +41,9 @@
             <td>Not Working</td>
           <% end %>
           <% if current_user.is_admin == true %>
-            <td><%= link_to ("<span class='glyphicon glyphicon-edit'></span>".html_safe), edit_item_path(item) %></td>
+            <td><%= link_to ("<i class='fas fa-edit'></i>".html_safe), edit_item_path(item) %></td>
             <% if !item.employee.present? %>
-              <td><%= link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, item_path(item), method: :delete, data: { confirm: "Are you sure?" } %></td>
+              <td><%= link_to "<i class='fas fa-backspace'></i>".html_safe, item_path(item), method: :delete, data: { confirm: "Are you sure?" } %></td>
             <% end %>
           <% end %>
         </tr>

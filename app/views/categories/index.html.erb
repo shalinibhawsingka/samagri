@@ -17,6 +17,8 @@
     <thead>
       <tr class="bg-info">
         <th>Name</th>
+        <th>Buffer Quantity</th>
+        <th>Minimum Required Quantity</th>
         <th></th>
         <th></th>
       </tr>
@@ -26,9 +28,11 @@
       <% @categories.each do |c| %>
         <tr>
           <td><%= c.name %></td>
+          <td><%= c.buffer %></td>
+          <td><%= c.min_quan %></td>
           <% if current_user.is_admin == true %>
-            <td><%= link_to ("<span class='glyphicon glyphicon-edit'></span>".html_safe), edit_category_path(c) %></td>
-            <td><%= link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, category_path(c), method: :delete, data: { confirm: "Are you sure?" } %></td>
+            <td><%= link_to ("<i class='fas fa-edit'></i>".html_safe), edit_category_path(c) %></td>
+            <td><%= link_to "<i class='fas fa-backspace'></i>".html_safe, category_path(c), method: :delete, data: { confirm: "Are you sure?" } %></td>
           <% end %>  
         </tr>
       <% end %>

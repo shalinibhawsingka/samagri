@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :get_user, only: [:edit, :update, :destroy]
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
   end
@@ -12,16 +13,14 @@ class UsersController < ApplicationController
     if @user.save
         redirect_to users_path, alert: "User created successfully."
     else
-        redirect_to new_user_path, alert: "Error creating user."
+        render new_user_path, alert: "Error creating user."
     end
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to(users_path(@user), flash: { success: 'Successfully Updated' })
     else
@@ -30,7 +29,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     if @user.destroy
       flash[:notice] = "Successfully deleted!"
       redirect_to users_path
@@ -45,4 +43,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :is_admin)
   end
 
+  def get_user
+    @user = User.find(params[:id])
+  end
 end

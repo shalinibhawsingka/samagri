@@ -1,0 +1,7 @@
+<div class="container">
+<%= render "shared/errors", obj: @brand %>
+  <%= bootstrap_form_for(@brand) do |f| %>
+    <%= f.text_field :name, label: "Name :" %><br />
+    <%= f.submit %>
+  <% end %>
+</div>

@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     if google_auth.info.email.present?
       @user = find_user(google_auth)
       session[:user_id] = @user.id
-      redirect_to controller: "home", action: "show"
+      redirect_to show_path
     else
       redirect_to root_path
     end

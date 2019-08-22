@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-  cattr_accessor :current_user
 
   belongs_to :brand, optional: true
   belongs_to :category
@@ -9,5 +8,6 @@ class Item < ApplicationRecord
   has_many :storage
   has_many :issues
 
-  
+  validates :name, presence: { message: "must be given please" }
+  validates :name, uniqueness: { message: "has been taken already" }
 end

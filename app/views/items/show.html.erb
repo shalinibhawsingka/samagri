@@ -1,6 +1,8 @@
+<%= render "shared/nav" %>
 <div class="container align">
   <h5>Id : <%= @item.id %></h5>
   Name : <%= @item.name %>
+  <br>
   <%  if @item.brand.present? %>
     Brand : <%= link_to @item.brand.name, brands_path(@item.brand_id) %>
   <% end %>

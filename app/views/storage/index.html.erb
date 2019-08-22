@@ -1,34 +1,60 @@
 <%= render "shared/nav" %>
 <div class="container">
   <h2>Storage Section</h2>
-  <%= will_paginate @categories,renderer: BootstrapPagination::Rails %>
 
-  <table class = "table table-bordered">
-    <thead>
-      <tr class="bg-info">
-        <th>Category ID</th>
-        <th>Name</th>
-        <th>Items</th>
-        <th>Quantity</th>
-      </tr>
-    </thead>
+  <%= form_tag storage_index_path, { method: :get, class: "form-inline"} do %>
+    <%= select_tag :category, options_from_collection_for_select(Category.all, :id, :name, { selected: params[:category]} ), prompt: "Select Category", class: "category-dropdown form-control search" %>
+    <%= submit_tag %>
+  <% end %>
 
-    <tbody>
-      <% @categories.each do |category| %>
-        <tr>
-          <td><%= category.id %></td>
-          <td><%= category.name %></td>
-          <td>
-            <% if category.items.count >= 1 %>
-              <% category.items.each do |cat_item| %>
-                <%= cat_item.name %><br>
+  <% if @category.present? %>
+  
+    <% if @items.present? %>
+    
+      <hr>
+
+      No of items : <%= @items.size %><br>
+      Buffer Quantity of this category : <%= @category.buffer %><br>
+      Minimum Quantity of this category : <%= @category.min_quan %><br>
+
+      <hr>
+    
+      <table class = "table table-bordered">
+        <thead>
+          <tr class="bg-info">
+            <th>Item ID</th>
+            <th>Name</th>
+            <th>Associated employee</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= item.name %></td>
+              <td>
+                <%  if item.employee.present? %>
+                  <%= link_to item.employee.name, employees_path %>
+                <% end %>
+              </td>
+              <% if item.status==true %>
+                <td>Working</td>
+              <% else %>
+                <td>Not Working</td>
               <% end %>
-            <% end %>
-          </td>
-          <td><%= category.items.count %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    <% else %>
+      <h5>No items under this category <i class="far fa-frown-open"></i></h5>
+    <% end %>
+
+  <% else %>
+    <h5>Please select a category</h5>
+  <% end %>
 
 </div>

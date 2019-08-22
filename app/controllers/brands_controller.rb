@@ -1,4 +1,5 @@
 class BrandsController < ApplicationController
+  before_action :get_brand, only: [:edit, :update, :destroy]
   def index
     @brands = Brand.paginate(page: params[:page], per_page: 5)
   end
@@ -12,16 +13,14 @@ class BrandsController < ApplicationController
     if @brand.save
         redirect_to brands_path, alert: "Brand created successfully."
     else
-        redirect_to new_brand_path, alert: "Error creating brand."
+        render new_brand_path, alert: "Error creating brand."
     end
   end
 
   def edit
-    @brand = Brand.find(params[:id])
   end
 
   def update
-    @brand = Brand.find(params[:id])
     if @brand.update(brand_params)
       redirect_to(brands_path(@brand), flash: { success: 'Successfully Updated' })
     else
@@ -30,7 +29,6 @@ class BrandsController < ApplicationController
   end
 
   def destroy
-    @brand = Brand.find(params[:id])
     if @brand.destroy
       flash[:notice] = "Successfully deleted!"
       redirect_to brands_path
@@ -43,5 +41,9 @@ class BrandsController < ApplicationController
 
   def brand_params
     params.require(:brand).permit(:name)
+  end
+
+  def get_brand
+    @brand = Brand.find(params[:id])
   end
 end

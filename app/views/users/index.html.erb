@@ -32,11 +32,11 @@
         <td><%= user.email %></td>
         <td><%= user.is_admin %></td>
         <% if current_user.is_admin == true && user == current_user %>
-          <td><%= link_to ("<span class='glyphicon glyphicon-edit'></span>".html_safe), edit_user_path(user) %></td>
+          <td><%= link_to ("<i class='fas fa-edit'></i>".html_safe), edit_user_path(user) %></td>
         <% end %>
         <% if current_user.is_admin == true && user.is_admin == false %>
-          <td><%= link_to ("<span class='glyphicon glyphicon-edit'></span>".html_safe), edit_user_path(user) %></td>
-          <td><%= link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, user_path(user), method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <td><%= link_to ("<i class='fas fa-edit'></i>".html_safe), edit_user_path(user) %></td>
+          <td><%= link_to "<i class='fas fa-backspace'></i>".html_safe, user_path(user), method: :delete, data: { confirm: "Are you sure?" } %></td>
         <% end %>
       </tr>
     <% end %>

@@ -1,5 +1,6 @@
 @import "bootstrap";
-@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css");
+@import "font-awesome-sprockets";
+@import "font-awesome";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -17,70 +18,74 @@
  */
 
 
- .navbar-expand-sm .navbar-nav .nav-link {
+.navbar-expand-sm .navbar-nav .nav-link {
   margin-right: 20px;
 }
-
-html{
+.pagination {
+  li{
+  padding-left: 10px;
+  }
+}
+html {
   font-size: 100%;
 }
 
-.logo{
+.logo {
     padding-left: 25px;
     color: #e85d1a;
     font-weight: bolder;
   }
-.logo:hover{
+.logo:hover {
   color: #e85d1a;
 }
-.nav-link{
+.nav-link {
   color: white;
 }
-.nav-link:hover{
+.nav-link:hover {
   color: #e85d1a;
 }
-.dropdown-menu{
+.dropdown-menu {
   background-color:#343a40 !important;
 }
-.dropdown-item{
+.dropdown-item {
   color: white;
 }
-.dropdown-item:hover{
+.dropdown-item:hover {
   color: #e85d1a;
   background-color: #343a40 !important;
   font-weight: bold;
-}
- .space{
+ }
+ .space {
    padding: 0px;
  }
- #navbardrop{
+ #navbardrop {
    margin-right: 150px;
  }
 
- h2{
+ h2 {
    margin-top: 10px;
    color: #17a2b8 !important;
    font-weight: bold;
  }
- h5{
+ h5 {
   margin-top: 10px;
   color: #e85d1a !important;
   font-weight: bold;
  }
- .add{
+ .add {
    float: right;
    margin-right: 30px;
    margin-bottom: 20px;
  }
 
- .form-check-label{
+ .form-check-label {
    margin-left: 30px;
  }
- form{
+ form {
    margin-top: 25px;
  }
 
- html,body{
+ html,body {
    height: 100%;
  }
 
@@ -108,17 +113,17 @@ html{
   padding-top: 5px;
   display: inline-block;
 }
-.align{
+.align {
   height: 100%;
   vertical-align: middle;
 }
-.dropdown-menu{
+.dropdown-menu {
   color: white;
 }
 
-.low_class{
+.low_class {
   color: yellow;
 }
-.high_class{
+.high_class {
   color: red;
 }
