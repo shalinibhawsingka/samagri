@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :get_employee, only: [:edit, :update, :destroy]
+  before_action :get_employee, only: %i[edit update destroy]
   def index
     @employees = Employee.paginate(page: params[:page], per_page: 5)
   end
@@ -11,20 +11,19 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
     if @employee.save
-        redirect_to employees_path, alert: "Employee created successfully."
+      redirect_to employees_path, alert: "Employee created successfully."
     else
-        render new_employee_path, alert: "Error creating employee."
+      render new_employee_path, alert: "Error creating employee."
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @employee.update(employee_params)
-      redirect_to(employees_path(@employee), flash: { success: 'Successfully Updated' })
+      redirect_to(employees_path(@employee), flash: { success: "Successfully Updated" })
     else
-      render 'edit'
+      render "edit"
     end
   end
 

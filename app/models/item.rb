@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-
   belongs_to :brand, optional: true
   belongs_to :category
   belongs_to :employee, optional: true

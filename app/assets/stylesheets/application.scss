@@ -29,67 +29,66 @@
 html {
   font-size: 100%;
 }
-
 .logo {
-    padding-left: 25px;
-    color: #e85d1a;
-    font-weight: bolder;
-  }
-.logo:hover {
+  padding-left: 25px;
   color: #e85d1a;
+  font-weight: bolder;
+  &:hover{
+    color: white;
+  }
 }
 .nav-link {
   color: white;
-}
-.nav-link:hover {
-  color: #e85d1a;
+  &:hover {
+    color: #e85d1a;
+  }
 }
 .dropdown-menu {
   background-color:#343a40 !important;
 }
 .dropdown-item {
   color: white;
+  &:hover {
+    color: #e85d1a;
+    background-color: #343a40 !important;
+    font-weight: bold;
+  }
 }
-.dropdown-item:hover {
-  color: #e85d1a;
-  background-color: #343a40 !important;
-  font-weight: bold;
- }
- .space {
-   padding: 0px;
- }
- #navbardrop {
-   margin-right: 150px;
- }
+.space {
+  padding: 0px;
+}
+#navbardrop {
+  margin-right: 150px;
+}
 
- h2 {
-   margin-top: 10px;
-   color: #17a2b8 !important;
-   font-weight: bold;
- }
- h5 {
+h2 {
   margin-top: 10px;
-  color: #e85d1a !important;
+  color: #17a2b8 !important;
   font-weight: bold;
- }
- .add {
-   float: right;
-   margin-right: 30px;
-   margin-bottom: 20px;
- }
+}
+h5 {
+margin-top: 10px;
+color: #e85d1a !important;
+font-weight: bold;
+}
+.add {
+  float: right;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
 
- .form-check-label {
-   margin-left: 30px;
- }
- form {
-   margin-top: 25px;
- }
+.form-check-label {
+  margin-left: 30px;
+}
+form {
+  margin-top: 25px;
+}
 
- html,body {
-   height: 100%;
- }
+html,body {
+  height: 100%;
+}
 
- .backgrnd {
+.backgrnd {
   background: url(image_path("inventory3.jpg")) no-repeat top center;
   background-size: cover;
   text-align: center;

@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :get_issue, only: [:edit, :update, :destroy]
+  before_action :get_issue, only: %i[edit update destroy]
   def index
     @issues = Issue.paginate(page: params[:page], per_page: 5)
   end
@@ -11,23 +11,20 @@ class IssuesController < ApplicationController
   def create
     @issue = Issue.new(issue_params)
     if @issue.save
-        redirect_to issues_path, alert: "User created successfully."
+      redirect_to issues_path, alert: "User created successfully."
     else
-        render new_issue_path, alert: "Error creating issue."
+      render new_issue_path, alert: "Error creating issue."
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @issue.update(issue_params)
-      if @issue.status==true
-        UsersMailer.with(issue: @issue).Update(@issue).deliver_now
-      end
-      redirect_to(issues_path(@issue), flash: { success: 'Successfully Updated' })
+      UsersMailer.with(issue: @issue).Update(@issue).deliver_now if @issue.status == true
+      redirect_to(issues_path(@issue), flash: { success: "Successfully Updated" })
     else
-      render 'edit'
+      render "edit"
     end
   end
 

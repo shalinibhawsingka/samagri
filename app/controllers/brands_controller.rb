@@ -1,5 +1,5 @@
 class BrandsController < ApplicationController
-  before_action :get_brand, only: [:edit, :update, :destroy]
+  before_action :get_brand, only: %i[edit update destroy]
   def index
     @brands = Brand.paginate(page: params[:page], per_page: 5)
   end
@@ -11,20 +11,19 @@ class BrandsController < ApplicationController
   def create
     @brand = Brand.new(brand_params)
     if @brand.save
-        redirect_to brands_path, alert: "Brand created successfully."
+      redirect_to brands_path, alert: "Brand created successfully."
     else
-        render new_brand_path, alert: "Error creating brand."
+      render new_brand_path, alert: "Error creating brand."
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @brand.update(brand_params)
-      redirect_to(brands_path(@brand), flash: { success: 'Successfully Updated' })
+      redirect_to(brands_path(@brand), flash: { success: "Successfully Updated" })
     else
-      render 'edit'
+      render "edit"
     end
   end
 

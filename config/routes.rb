@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   resources :notifications
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get 'login', to: redirect('/auth/google_oauth2'), as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
-  get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/')
+  get "login", to: redirect("/auth/google_oauth2"), as: "login"
+  get "logout", to: "sessions#destroy", as: "logout"
+  get "auth/:provider/callback", to: "sessions#create"
+  get "auth/failure", to: redirect("/")
   root "home#index"
   get "home", to: "home#index"
   get "/show", to: "home#show"
@@ -17,6 +17,6 @@ Rails.application.routes.draw do
   end
   resources :storage, only: [:index]
   resources :issues, except: [:show]
-  mount ActionCable.server => '/cable'
+  mount ActionCable.server => "/cable"
   get "notifications", to: "notifications#index"
 end

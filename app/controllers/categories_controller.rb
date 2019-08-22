@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :get_category, only: [:edit, :update, :destroy]
+  before_action :get_category, only: %i[edit update destroy]
   def index
     @categories = Category.paginate(page: params[:page], per_page: 5)
   end
@@ -11,20 +11,19 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-        redirect_to categories_path, alert: "Category created successfully."
+      redirect_to categories_path, alert: "Category created successfully."
     else
-        render new_category_path, alert: "Error creating category."
+      render new_category_path, alert: "Error creating category."
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @category.update(category_params)
-      redirect_to(categories_path(@category), flash: { success: 'Successfully Updated' })
+      redirect_to(categories_path(@category), flash: { success: "Successfully Updated" })
     else
-      render 'edit'
+      render "edit"
     end
   end
 
