@@ -27,9 +27,18 @@
             </div>
           </li>
 
-          
-
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notification (<b class="notifications-count">2</b>)</a><ul class="dropdown-menu notify-drop"><div class="notify-drop-title"><div class="row"><div class="col-md-6 col-sm-6 col-xs-6">Notifications (<b id="notifications-count">2</b>)</div><div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="tümü okundu."><i class="fa fa-dot-circle-o"></i></a></div></div></div><!-- end notify title --><!-- notify content --><div class="drop-content" id="notification"><% Notfication.all.each do |notification| %><li><div class="col-md-3 col-sm-3 col-xs-3"><%= notification.name %></div></li><% end %></div></ul></li>
+          <li class="nav-item dropdown">
+            <% if current_user.is_admin? %>
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                Notification (<b class="notifications-count">0</b>)
+              </a>
+              <div class="dropdown-menu" id="notification">
+                <% Notification.all.each do |notification| %>
+                  <a class="dropdown-item <%= notification.priority == true ? 'high_class' : 'low_class' %>" href="#"><%= notification.name %></a>
+                <% end %>
+              </div>
+            <% end %>
+          </li>
 
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">

@@ -1,5 +1,5 @@
 App.room = App.cable.subscriptions.create "WebNotificationsChannel",
 
 received: (data) ->
-  $('#notification div').append '<li>' + data['notification'] + '</li>'
+  $('#notification').append '<a class="dropdown-item" href="#">' + data['notification'] + '</a>'
   $('#notifications-count,.notifications-count').text data['count']

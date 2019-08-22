@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   root "home#index"
-  #root to: 'notifications#index'
   get "home", to: "home#index"
   get "/show", to: "home#show"
   resources :users

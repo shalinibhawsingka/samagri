@@ -24,17 +24,18 @@ class NotificationsController < ApplicationController
   # POST /notifications
   # POST /notifications.json
   def create
-    @notification = Notification.new(notification_params)
-
+    @notfication = Notification.create(notification_params)
     respond_to do |format|
-      if @notification.save
-        format.html { redirect_to @notification, notice: 'Notification was successfully created.' }
-        format.json { render :show, status: :created, location: @notification }
-      else
+      if @notfication.save
+        format.html { redirect_to @notfication, notice: 'Notfication was successfully created.' }
+        format.json { render :show, status: :created, location: @notfication }
+      else  
         format.html { render :new }
-        format.json { render json: @notification.errors, status: :unprocessable_entity }
+        format.json { render json: @notfication.errors, status: :unprocessable_entity }
       end
     end
+            
+    ActionCable.server.broadcast 'web_notifications_channel', notification: @notfication.name, count: Notification.all.count
   end
 
   # PATCH/PUT /notifications/1
@@ -61,8 +62,6 @@ class NotificationsController < ApplicationController
     end
   end
 
-  ActionCable.server.broadcast 'web_notifications_channel', notification: @notfication.name, count: Notification.all.count
-  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_notification
