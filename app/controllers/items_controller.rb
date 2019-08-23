@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :get_item, only: %i[show edit update destroy]
   def index
-    @items = Item.paginate(page: params[:page], per_page: 5)
+    @items = Item.includes(:employee).paginate(page: params[:page], per_page: 5)
   end
 
   def new

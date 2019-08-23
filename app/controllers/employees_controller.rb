@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :get_employee, only: %i[edit update destroy]
   def index
-    @employees = Employee.paginate(page: params[:page], per_page: 5)
+    @employees = Employee.includes(:items).paginate(page: params[:page], per_page: 5)
   end
 
   def new

@@ -18,111 +18,119 @@
  */
 
 
-.navbar-expand-sm .navbar-nav .nav-link {
-  margin-right: 20px;
+$orange: #e85d1a;
+$white: white;
+$blue: #17a2b8;
+$whitesmoke: whitesmoke;
+$yellow: yellow;
+$red: red;
+$background_color_1: #343a40;
+
+.navbar-expand-sm {
+	.navbar-nav {
+		.nav-link {
+			margin-right: 20px;
+		}
+	}
 }
 .pagination {
-  li{
-  padding-left: 10px;
+	li { 
+    padding-left: 10px;
   }
 }
 html {
   font-size: 100%;
 }
-.logo {
-  padding-left: 25px;
-  color: #e85d1a;
-  font-weight: bolder;
-  &:hover{
-    color: white;
-  }
-}
 .nav-link {
-  color: white;
-  &:hover {
+  color: $white;
+  &:hover { 
     color: #e85d1a;
   }
 }
 .dropdown-menu {
-  background-color:#343a40 !important;
-}
-.dropdown-item {
-  color: white;
-  &:hover {
-    color: #e85d1a;
-    background-color: #343a40 !important;
-    font-weight: bold;
-  }
+  background-color: $background_color_1 !important;
 }
 .space {
   padding: 0px;
 }
-#navbardrop {
-  margin-right: 150px;
+.logo {
+	padding-left: 25px;
+	color: $orange;
+	font-weight: bolder;
+	&:hover { 
+    color: white;
+  }
 }
-
+.dropdown-item {
+	color: $white;
+  &:hover { 
+    color: #e85d1a;
+    background-color: $background_color_1 !important;
+    font-weight: bold;
+  }
+}
+#navbardrop {
+	margin-right: 150px;
+}
 h2 {
-  margin-top: 10px;
-  color: #17a2b8 !important;
-  font-weight: bold;
+	margin-top: 10px;
+	color: $blue !important;
+	font-weight: bold;
 }
 h5 {
-margin-top: 10px;
-color: #e85d1a !important;
-font-weight: bold;
+	margin-top: 10px;
+	color: $orange !important;
+	font-weight: bold;
 }
 .add {
-  float: right;
-  margin-right: 30px;
-  margin-bottom: 20px;
+	float: right;
+	margin-right: 30px;
+	margin-bottom: 20px;
 }
-
 .form-check-label {
-  margin-left: 30px;
+	margin-left: 30px;
 }
 form {
-  margin-top: 25px;
+	margin-top: 25px;
 }
-
-html,body {
-  height: 100%;
+html {
+	height: 100%;
 }
-
+body {
+	height: 100%;
+}
 .backgrnd {
-  background: url(image_path("inventory3.jpg")) no-repeat top center;
-  background-size: cover;
-  text-align: center;
-  padding-top: 80px;
-  height: 100%;
-  color: whitesmoke; 
+	background: url(image_path("inventory3.jpg")) no-repeat top center;
+	background-size: cover;
+	text-align: center;
+	padding-top: 80px;
+	height: 100%;
+	color: $whitesmoke;
 }
-
 #grad {
-  width: 350px;
-  padding: 15px;
-  margin-top: 50px;
-  margin-left:auto;
-  margin-right:auto;
-  border-radius: 8px;
-  background: hsla(0, 7%, 65%, 0.589);
+	width: 350px;
+	padding: 15px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 8px;
+	background: hsla(0, 7%, 65%, 0.589);
 }
-
 .google-button {
-  width: 300px;
-  padding-top: 5px;
-  display: inline-block;
+	width: 300px;
+	padding-top: 5px;
+	display: inline-block;
 }
 .align {
-  height: 100%;
-  vertical-align: middle;
+	height: 100%;
+	vertical-align: middle;
 }
 .dropdown-menu {
-  color: white;
+	color: $white;
 }
-
 .low_class {
-  color: yellow;
+	color: $yellow;
 }
 .high_class {
-  color: red;
+	color: $red;
 }
