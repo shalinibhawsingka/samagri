@@ -27,7 +27,7 @@
         <%= link_to image_url(post.image_or_pdf.url) do%>
           <%= File.basename(post.image_or_pdf_file_name, ".*") %>
           <% if current_user.is_admin == true %>
-            <%= link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, item_post_path(@item, post.id), 
+            <%= link_to "<i class='fas fa-edit'></i>".html_safe, item_post_path(@item, post.id), 
               method: :delete, data: { confirm: "Are You sure?" } %>
           <% end %>
         <% end %>

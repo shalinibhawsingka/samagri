@@ -4,9 +4,9 @@
 <%= render "shared/errors", obj: @item %>
   <%= bootstrap_form_for(@item, html:{ multipart: true }) do |f| %>
     <%= f.text_field :name, label: "Name :" %><br />
-    <%= f.collection_select(:brand_id, Brand.all, :id, :name, {:prompt => 'Select the brand'} ) %><br />
-    <%= f.collection_select(:category_id, Category.all, :id, :name, {:prompt => 'Select the category'} ) %>  <br />
-    <%= f.collection_select(:employee_id, Employee.all.where(status: true), :id, :name, {:prompt => 'Select the employee'} ) %><br />
+    <%= f.collection_select(:brand_id, Brand.all, :id, :name, {:prompt => "Select the brand"} ) %><br />
+    <%= f.collection_select(:category_id, Category.all, :id, :name, {:prompt => "Select the category"} ) %>  <br />
+    <%= f.collection_select(:employee_id, Employee.all.where(status: true), :id, :name, {:prompt => "Select the employee"} ) %><br />
     <%= f.check_box :status, label: "Working?" %><br />
     <%= f.text_field :notes, label: "Notes :" %><br />
     <%= f.fields_for :post do |t| %>
@@ -17,9 +17,9 @@
             <%= image_tag post.image_or_pdf.url(:thumb) %>
           </div>
         <% end %>
-        <%= t.file_field :image_or_pdf, accept: 'image/jpeg,image/png,application/pdf,application/msword', multiple: true %>
+        <%= t.file_field :image_or_pdf, accept: "image/jpeg,image/png,application/pdf,application/msword", multiple: true %>
       <% else %>
-        <%= t.file_field :image_or_pdf, accept: 'image/jpeg,image/png,application/pdf,application/msword', multiple: true %>
+        <%= t.file_field :image_or_pdf, accept: "image/jpeg,image/png,application/pdf,application/msword", multiple: true %>
       <% end %>
     <% end %>
     
